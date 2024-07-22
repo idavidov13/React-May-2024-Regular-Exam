@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 export default function NavBar() {
@@ -7,7 +6,7 @@ export default function NavBar() {
       <ul className="nav-links">
         <li className="nav-item logo">
           <Link to="/" className="nav-link">
-            TradeVault
+            <strong>TradeVault</strong>
           </Link>
         </li>
       </ul>
