@@ -18,6 +18,10 @@ async function requester(method, url, data) {
 
     const result = await response.json();
 
+    if (!response.ok) {
+      throw result.message;
+    }
+
     return result;
   } catch (error) {
     console.error("Error during fetch: ", error);
