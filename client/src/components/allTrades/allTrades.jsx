@@ -1,20 +1,9 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import * as tradesAPI from "../../api/trades-api";
 import TradeItem from "./tradeItem/TradeItem";
+import { useGetAllTrades } from "../../hooks/useTrades";
 
 const AllTrades = () => {
-  const [trades, setTrades] = useState([]);
-
-  useEffect(() => {
-    tradesAPI
-      .getAll()
-      .then((result) => {
-        setTrades(result);
-      })
-      .catch((error) => console.error("Error fetching trades:", error));
-  }, []);
-
+  const [trades, setTrades] = useGetAllTrades();
   return (
     <div className="all-posted-trades">
       {trades.length > 0 ? (
