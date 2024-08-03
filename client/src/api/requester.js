@@ -13,9 +13,16 @@ async function requester(method, url, data) {
     options.body = JSON.stringify(data);
   }
 
-  const response = await fetch(url, options);
-  const result = response.json();
-  return result;
+  try {
+    const response = await fetch(url, options);
+
+    const result = await response.json();
+
+    return result;
+  } catch (error) {
+    console.error("Error during fetch: ", error);
+    throw error;
+  }
 }
 
 export const get = requester.bind(null, "GET");

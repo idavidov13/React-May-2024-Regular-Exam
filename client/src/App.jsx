@@ -8,6 +8,7 @@ import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import NotFound from "./components/notFound/NotFound";
 import AddTrade from "./components/addTrade/AddTrade";
+import TradeDetails from "./components/tradeDetails/TradeDetails";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/trades" element={<AllTrades />} />
+            <Route path="/trades/:id" element={<TradeDetails />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/add-trade" element={<AddTrade />} />
