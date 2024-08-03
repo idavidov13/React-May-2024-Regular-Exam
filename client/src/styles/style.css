@@ -5,6 +5,7 @@
 @import "login.css";
 @import "404.css";
 @import "addTrade.css";
+@import "allTrades.css";
 
 body {
   background-color: #121212;

@@ -1,0 +1,45 @@
+.all-posted-trades {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+}
+
+.trade-card {
+  background-color: #2c2c2c;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 300px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.trade-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+}
+
+.trade-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.trade-info {
+  padding: 1rem;
+  text-align: center;
+}
+
+.trade-info h3 {
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+}
+
+.trade-info p {
+  margin: 0.25rem 0;
+  font-size: 1rem;
+  color: #bbbbbb;
+}
