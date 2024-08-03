@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/authContext";
 
 export default function NavBar() {
+  const { isAuthenticated } = useContext(AuthContext);
+
   return (
     <nav className="navbar">
       <ul className="nav-links">
@@ -17,31 +21,33 @@ export default function NavBar() {
           </Link>
         </li>
 
-        <>
-          <li className="nav-item">
-            <Link to="/login" className="nav-link">
-              Login
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/register" className="nav-link">
-              Register
-            </Link>
-          </li>
-        </>
-
-        <>
-          <li className="nav-item">
-            <Link to="/add-trade" className="nav-link">
-              Add Trade
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/logout" className="nav-link">
-              Logout
-            </Link>
-          </li>
-        </>
+        {isAuthenticated ? (
+          <>
+            <li className="nav-item">
+              <Link to="/add-trade" className="nav-link">
+                Add Trade
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/logout" className="nav-link">
+                Logout
+              </Link>
+            </li>
+          </>
+        ) : (
+          <>
+            <li className="nav-item">
+              <Link to="/login" className="nav-link">
+                Login
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/register" className="nav-link">
+                Register
+              </Link>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   );
