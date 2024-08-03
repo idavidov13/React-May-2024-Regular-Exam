@@ -1,34 +1,38 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useForm } from "../../hooks/useForm";
+import { useLogin } from "../../hooks/useAuth";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const login = useLogin();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Basic validation (you can expand this as needed)
-    if (!email || !password) {
-      setError("Please enter both email and password");
-      return;
+  const { values, changeHandler, submitHandler } = useForm(
+    { email: "", password: "" },
+    async ({ email, password }) => {
+      try {
+        await login(email, password);
+        navigate("/");
+      } catch (error) {
+        console.error("Error logging in:", error);
+      }
     }
-    setError("");
-    // Handle the login logic, e.g., send data to API
-    console.log({ email, password });
-  };
+  );
 
   return (
     <div className="login-container">
       <h1>Login</h1>
-      {error && <p className="error-message">{error}</p>}
-      <form onSubmit={handleSubmit} className="login-form">
+      <form onSubmit={submitHandler} className="login-form">
         <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
             type="email"
             id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            value={values.email}
+            onChange={changeHandler}
+            placeholder="IvanDavidov@softuni.bg"
             required
           />
         </div>
@@ -37,8 +41,9 @@ export default function Login() {
           <input
             type="password"
             id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name="password"
+            value={values.password}
+            onChange={changeHandler}
             required
           />
         </div>
@@ -46,6 +51,9 @@ export default function Login() {
           Login
         </button>
       </form>
+      <p className="register-link-login-page">
+        Not registered yet? <Link to="/register">Register here</Link>
+      </p>
     </div>
   );
 }
