@@ -62,3 +62,17 @@
 .submit-button:hover {
   background-color: #3700b3;
 }
+
+.register-link-login-page {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.register-link-login-page a {
+  color: #bb86fc;
+  text-decoration: none;
+}
+
+.register-link-login-page a:hover {
+  text-decoration: underline;
+}
