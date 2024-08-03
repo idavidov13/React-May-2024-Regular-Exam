@@ -1,6 +1,10 @@
 @import "nav.css";
 @import "home.css";
 @import "footer.css";
+@import "registration.css";
+@import "login.css";
+@import "404.css";
+@import "addTrade.css";
 
 body {
   background-color: #121212;
