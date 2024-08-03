@@ -70,12 +70,23 @@
   color: #e0e0e0;
   text-decoration: none;
   font-size: 1rem;
-  background-color: #bb86fc;
+  background-color: #bf8ffa;
   padding: 0.5rem 1rem;
   border-radius: 4px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .home-link:hover {
   background-color: #3700b3;
+  transform: scale(1.05);
+}
+
+.register-link {
+  background-color: #03dac6;
+  font-weight: bold;
+}
+
+.register-link:hover {
+  background-color: #018786;
+  transform: scale(1.1);
 }

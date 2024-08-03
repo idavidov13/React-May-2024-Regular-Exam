@@ -12,11 +12,11 @@ export default function HomePage() {
           <h2>Get Started</h2>
           <p>Join us today and start tracking your trades with ease.</p>
           <div className="home-links">
-            <Link to="/register" className="home-link">
-              Register
-            </Link>
             <Link to="/login" className="home-link">
               Login
+            </Link>
+            <Link to="/register" className="home-link register-link">
+              Register
             </Link>
           </div>
         </div>
