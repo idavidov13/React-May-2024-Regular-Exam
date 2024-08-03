@@ -1,21 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import * as tradesAPI from "../../api/trades-api";
+import { useGetOneTrade } from "../../hooks/useTrades";
 
 const TradeDetails = () => {
   const { id } = useParams();
-  const [trade, setTrade] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const result = await tradesAPI.getTradeById(id);
-        setTrade(result);
-      } catch (error) {
-        console.error("Error fetching trade:", error);
-      }
-    })();
-  }, [id]);
+  const [trade, setTrade] = useGetOneTrade(id);
 
   if (!trade) {
     return <p>Loading trade details...</p>;

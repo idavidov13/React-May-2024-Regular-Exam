@@ -14,3 +14,20 @@ export function useGetAllTrades() {
 
   return [trades, setTrades];
 }
+
+export function useGetOneTrade(id) {
+  const [trade, setTrade] = useState({});
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const result = await tradesAPI.getTradeById(id);
+        setTrade(result);
+      } catch (error) {
+        console.error("Error fetching trade:", error);
+      }
+    })();
+  }, [id]);
+
+  return [trade, setTrade];
+}
