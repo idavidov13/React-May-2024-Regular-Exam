@@ -21,7 +21,6 @@ export default function AddTrade() {
   const createHandler = async (values) => {
     try {
       const createdTrade = await createTrade(values);
-      console.log("Created Trade:", createdTrade);
 
       if (!createdTrade || !createdTrade._id) {
         throw new Error("Trade creation failed or missing _id in response");

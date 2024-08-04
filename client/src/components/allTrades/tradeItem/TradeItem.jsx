@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function TradeItem({ _id, img, ticker, date, username }) {
+export default function TradeItem({ _id, img, ticker, date }) {
   return (
     <div className="trade-card" key={_id}>
       <img src={img} alt={ticker} className="trade-image" />
