@@ -11,6 +11,7 @@ import NotFound from "./components/notFound/NotFound";
 import AddTrade from "./components/addTrade/AddTrade";
 import TradeDetails from "./components/tradeDetails/TradeDetails";
 import { AuthContext } from "./context/authContext";
+import EditTrade from "./components/editTrade/EditTrade";
 
 function App() {
   const [authState, setAuthState] = useState({});
@@ -42,6 +43,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/add-trade" element={<AddTrade />} />
+              <Route path="/trades/:id/edit" element={<EditTrade />} />
               <Route path="/*" element={<NotFound />} />
             </Routes>
           </main>
