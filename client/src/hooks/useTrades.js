@@ -31,3 +31,12 @@ export function useGetOneTrade(id) {
 
   return [trade, setTrade];
 }
+
+export function useCreateTrade() {
+  const tradeCreateHandler = (tradeData) => {
+    const result = tradesAPI.createTrade(tradeData);
+    return result;
+  };
+
+  return tradeCreateHandler;
+}
