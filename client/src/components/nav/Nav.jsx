@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../context/authContext";
 import { useLogout } from "../../hooks/useAuth";
