@@ -8,7 +8,6 @@ export default function TradeItem({ _id, img, ticker, date, username }) {
       <div className="trade-info">
         <h3>{ticker}</h3>
         <p>Date: {date}</p>
-        <p>Posted by: {username}</p>
         <Link to={`/trades/${_id}`} className="details-button">
           Details
         </Link>

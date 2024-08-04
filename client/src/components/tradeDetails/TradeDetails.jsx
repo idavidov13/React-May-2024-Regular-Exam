@@ -36,9 +36,6 @@ const TradeDetails = () => {
           <p>
             <strong>P/L:</strong> {trade["p/l"] ? trade["p/l"] : "TBD"}
           </p>
-          <p>
-            <strong>Posted by:</strong> {trade.username}
-          </p>
         </div>
       </div>
     </div>
