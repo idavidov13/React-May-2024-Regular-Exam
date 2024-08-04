@@ -7,6 +7,7 @@
 @import "addTrade.css";
 @import "allTrades.css";
 @import "tradeDetails.css";
+@import "editTrade.css";
 
 body {
   background-color: #121212;
