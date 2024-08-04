@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/authContext";
+import { useAuthContext } from "../../context/authContext";
 import * as tradesAPI from "../../api/trades-api";
 
 import { useParams } from "react-router-dom";
@@ -9,7 +9,7 @@ import { useGetOneTrade } from "../../hooks/useTrades";
 const TradeDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { isAuthenticated, email } = useContext(AuthContext);
+  const { isAuthenticated, email } = useAuthContext();
   // const { email, userId } = useAuthContext();
 
   const [trade, setTrade] = useGetOneTrade(id);

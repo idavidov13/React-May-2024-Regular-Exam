@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../context/authContext";
+import { useAuthContext } from "../../context/authContext";
 
 export default function HomePage() {
-  const { isAuthenticated, email } = useContext(AuthContext);
+  const { isAuthenticated, email } = useAuthContext();
 
   return (
     <div className="home-container">
