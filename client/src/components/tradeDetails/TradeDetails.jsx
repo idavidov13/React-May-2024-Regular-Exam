@@ -1,10 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/authContext";
+import * as tradesAPI from "../../api/trades-api";
+
 import { useParams } from "react-router-dom";
 import { useGetOneTrade } from "../../hooks/useTrades";
 
 const TradeDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { isAuthenticated, email } = useContext(AuthContext);
+  // const { email, userId } = useAuthContext();
+
   const [trade, setTrade] = useGetOneTrade(id);
+
+  // const isOwner = userId === trade._ownerId;
+
+  const tradeDeleteHandler = async () => {
+    const isConfirmed = confirm(
+      `Are you sure you want to delete ${trade.ticker} trade`
+    );
+
+    if (isConfirmed) {
+      try {
+        await tradesAPI.deleteTrade(id);
+
+        navigate("/trades");
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  };
 
   if (!trade) {
     return <p>Loading trade details...</p>;
@@ -36,6 +62,25 @@ const TradeDetails = () => {
           <p>
             <strong>P/L:</strong> {trade["p/l"] ? trade["p/l"] : "TBD"}
           </p>
+          {isAuthenticated ? (
+            <div className="details-links">
+              <Link
+                to="#"
+                onClick={tradeDeleteHandler}
+                className="details-link "
+              >
+                Delete
+              </Link>
+              <Link
+                to={`/trades/${id}/edit`}
+                className="details-link edit-link"
+              >
+                Edit
+              </Link>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>
