@@ -1,9 +1,11 @@
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import { useLogin } from "../../hooks/useAuth";
 
 export default function Login() {
+  const [error, setError] = useState("");
+
   const login = useLogin();
   const navigate = useNavigate();
 
@@ -13,8 +15,12 @@ export default function Login() {
       try {
         await login(email, password);
         navigate("/");
-      } catch (error) {
-        console.error("Error logging in:", error);
+      } catch (err) {
+        values.password = "";
+        const errorMessage =
+          err?.message ||
+          "An error occurred during registration. Please try again.";
+        setError(errorMessage);
       }
     }
   );
@@ -22,6 +28,7 @@ export default function Login() {
   return (
     <div className="login-container">
       <h1>Login</h1>
+      {error && <p className="error-message">{error}</p>}
       <form onSubmit={submitHandler} className="login-form">
         <div className="form-group">
           <label htmlFor="email">Email:</label>
