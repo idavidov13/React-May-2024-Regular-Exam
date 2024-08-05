@@ -29,18 +29,12 @@ function App() {
               <Route path="/trades/:id" element={<TradeDetails />} />
               <Route element={<RouteGuardNONAuthUser />}>
                 <Route path="/register" element={<Register />} />
-              </Route>
-              <Route element={<RouteGuardNONAuthUser />}>
                 <Route path="/login" element={<Login />} />
               </Route>
               <Route element={<RouteGuardAuthUser />}>
-                <Route path="/logout" element={<Logout />} />
-              </Route>
-              <Route element={<RouteGuardAuthUser />}>
-                <Route path="/add-trade" element={<AddTrade />} />
-              </Route>
-              <Route element={<RouteGuardAuthUser />}>
                 <Route path="/trades/:id/edit" element={<EditTrade />} />
+                <Route path="/add-trade" element={<AddTrade />} />
+                <Route path="/logout" element={<Logout />} />
               </Route>
 
               <Route path="/*" element={<NotFound />} />
