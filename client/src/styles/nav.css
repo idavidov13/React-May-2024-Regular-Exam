@@ -1,7 +1,6 @@
-/* Navbar Styles */
 .navbar {
   background-color: #1f1f1f;
-  padding: 1rem;
+  padding: 0.25rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,7 +21,7 @@
 .nav-link {
   color: #e0e0e0;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 0.75rem;
   transition: color 0.3s;
 }
 
@@ -73,7 +72,7 @@
 }
 
 .market-data h2 {
-  font-size: 1rem; /* Slightly smaller font size for better alignment */
+  font-size: 0.75rem;
   margin: 0;
   color: #bf8ffa;
 }
@@ -86,8 +85,8 @@
 .market-data .divider {
   width: 1px;
   background-color: #444;
-  height: 2rem; /* Adjust based on content height */
-  margin: 0 1rem; /* Space between text areas */
+  height: 2rem;
+  margin: 0 1rem;
 }
 
 .data {

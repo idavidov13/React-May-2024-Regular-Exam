@@ -25,12 +25,12 @@
 }
 
 .home-header h1 {
-  font-size: 4rem;
+  font-size: 3rem;
   margin-bottom: 0.5rem;
 }
 
 .home-header p {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .home-content {
@@ -51,12 +51,12 @@
 }
 
 .home-section h2 {
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   margin-bottom: 0.5rem;
 }
 
 .home-section p {
-  font-size: 1rem;
+  font-size: 0.75rem;
   margin-bottom: 1rem;
 }
 
@@ -69,7 +69,7 @@
 .home-link {
   color: #e0e0e0;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 0.75rem;
   background-color: #bf8ffa;
   padding: 0.5rem 1rem;
   border-radius: 4px;
