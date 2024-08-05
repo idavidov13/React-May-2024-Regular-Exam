@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useRegister } from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 
 export default function Register() {
@@ -14,16 +13,22 @@ export default function Register() {
   const { values, changeHandler, submitHandler } = useForm(
     { email: "", password: "", rePassword: "" },
     async ({ email, password, rePassword }) => {
-      if (password != rePassword) {
+      if (password !== rePassword) {
         values.password = "";
         values.rePassword = "";
-        return setError("Passwords do not match.");
+        setError("Passwords do not match.");
+        return;
       }
       try {
         await register(email, password);
         navigate("/");
-      } catch (error) {
-        setError(error);
+      } catch (err) {
+        values.password = "";
+        values.rePassword = "";
+        const errorMessage =
+          err?.message ||
+          "An error occurred during registration. Please try again.";
+        setError(errorMessage);
       }
     }
   );
