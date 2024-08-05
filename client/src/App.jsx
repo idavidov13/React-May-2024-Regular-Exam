@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
+import { AuthContextProvider } from "./context/authContext";
+
 import NavBar from "./components/nav/Nav";
 import Home from "./components/home/Home";
 import Footer from "./components/footer/Footer";
@@ -9,8 +11,8 @@ import Login from "./components/login/Login";
 import NotFound from "./components/notFound/NotFound";
 import AddTrade from "./components/addTrade/AddTrade";
 import TradeDetails from "./components/tradeDetails/TradeDetails";
-import { AuthContextProvider } from "./context/authContext";
 import EditTrade from "./components/editTrade/EditTrade";
+import Logout from "./components/logout/Logout";
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
               <Route path="/trades/:id" element={<TradeDetails />} />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/logout" element={<Logout />} />
               <Route path="/add-trade" element={<AddTrade />} />
               <Route path="/trades/:id/edit" element={<EditTrade />} />
               <Route path="/*" element={<NotFound />} />

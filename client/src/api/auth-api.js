@@ -7,7 +7,6 @@ export const login = async (email, password) => {
     email,
     password,
   });
-
   return authData;
 };
 
@@ -17,5 +16,10 @@ export const register = async (email, password) => {
     password,
   });
 
+  return authData;
+};
+
+export const logout = async () => {
+  const authData = await request.get(`${BASE_URL}/logout`);
   return authData;
 };

@@ -1,19 +1,8 @@
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../context/authContext";
-import { useLogout } from "../../hooks/useAuth";
 
 export default function NavBar() {
   const { isAuthenticated } = useAuthContext();
-
-  const logout = useLogout();
-
-  const handleLogout = async () => {
-    try {
-      await logout();
-    } catch (error) {
-      console.error("Error logging out:", error);
-    }
-  };
 
   return (
     <nav className="navbar">
@@ -39,19 +28,9 @@ export default function NavBar() {
               </Link>
             </li>
             <li className="nav-item">
-              <button
-                onClick={handleLogout}
-                className="nav-link"
-                style={{
-                  background: "none",
-                  border: "none",
-                  padding: 0,
-                  cursor: "pointer",
-                  color: "inherit",
-                }}
-              >
+              <Link to="/logout" className="nav-link">
                 Logout
-              </button>
+              </Link>
             </li>
           </>
         ) : (
