@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { useEditForm } from "../../hooks/useEditForm";
-import { useCreateTrade, useGetOneTrade } from "../../hooks/useTrades";
+import { useGetOneTrade } from "../../hooks/useTrades";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import * as tradesAPI from "../../api/trades-api";
@@ -19,20 +19,53 @@ export default function EditTrade() {
   const { id } = useParams();
   const [trade, setTrade] = useGetOneTrade(id);
 
-  // const [error, setError] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
-  // const createTrade = useCreateTrade();
 
   const { values, changeHandler, submitHandler } = useEditForm(
     Object.assign(initialValues, trade),
     async (values) => {
+      setError("");
+
+      if (!values.ticker.trim()) {
+        return setError("Ticker symbol is required.");
+      }
+      if (!values.date) {
+        return setError("Date is required.");
+      }
+      const currentDate = new Date().toISOString().split("T")[0];
+      if (values.date > currentDate) {
+        return setError("The date cannot be in the future.");
+      }
+      if (values.entryPrice <= 0) {
+        return setError("Entry price must be a positive number.");
+      }
+      if (values.quantity <= 0 || !Number.isInteger(Number(values.quantity))) {
+        return setError("Quantity must be a positive integer.");
+      }
+      if (values.exitPrice && values.exitPrice < 0) {
+        return setError("Exit price must be a positive number or left empty.");
+      }
+      if (values.pl && isNaN(Number(values.pl))) {
+        return setError("P/L must be a number.");
+      }
+      if (!/^https?:\/\/.+\..+/.test(values.img)) {
+        return setError("Please enter a valid URL for the image link.");
+      }
+
       const isConfirmed = confirm(
         `Are you sure you want to edit ${trade.ticker} trade`
       );
 
       if (isConfirmed) {
-        const updatedTrade = await tradesAPI.updateTrade(id, values);
-        navigate(`/trades/${id}`);
+        try {
+          const updatedTrade = await tradesAPI.updateTrade(id, values);
+          navigate(`/trades/${id}`);
+        } catch (error) {
+          setError(
+            error.message || "An error occurred while creating the trade."
+          );
+        }
       }
     }
   );
@@ -40,7 +73,7 @@ export default function EditTrade() {
   return (
     <div className="edit-trade-container">
       <h1>Edit Trade</h1>
-      {/* {error && <p className="error-message">{error}</p>} */}
+      {error && <p className="error-message">{error}</p>}
       <form onSubmit={submitHandler} className="edit-trade-form">
         <div className="form-group">
           <label htmlFor="tickerSymbol">Ticker Symbol:</label>
