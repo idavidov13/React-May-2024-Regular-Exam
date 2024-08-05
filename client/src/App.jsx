@@ -13,6 +13,8 @@ import AddTrade from "./components/addTrade/AddTrade";
 import TradeDetails from "./components/tradeDetails/TradeDetails";
 import EditTrade from "./components/editTrade/EditTrade";
 import Logout from "./components/logout/Logout";
+import RouteGuardAuthUser from "./components/common/RouteGuardAuthUser";
+import RouteGuardNONAuthUser from "./components/common/RouteGuardNONAuthUser";
 
 function App() {
   return (
@@ -25,11 +27,22 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/trades" element={<AllTrades />} />
               <Route path="/trades/:id" element={<TradeDetails />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/logout" element={<Logout />} />
-              <Route path="/add-trade" element={<AddTrade />} />
-              <Route path="/trades/:id/edit" element={<EditTrade />} />
+              <Route element={<RouteGuardNONAuthUser />}>
+                <Route path="/register" element={<Register />} />
+              </Route>
+              <Route element={<RouteGuardNONAuthUser />}>
+                <Route path="/login" element={<Login />} />
+              </Route>
+              <Route element={<RouteGuardAuthUser />}>
+                <Route path="/logout" element={<Logout />} />
+              </Route>
+              <Route element={<RouteGuardAuthUser />}>
+                <Route path="/add-trade" element={<AddTrade />} />
+              </Route>
+              <Route element={<RouteGuardAuthUser />}>
+                <Route path="/trades/:id/edit" element={<EditTrade />} />
+              </Route>
+
               <Route path="/*" element={<NotFound />} />
             </Routes>
           </main>
