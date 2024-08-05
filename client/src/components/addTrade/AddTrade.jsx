@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "../../hooks/useForm";
 import { useCreateTrade } from "../../hooks/useTrades";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +19,34 @@ export default function AddTrade() {
   const createTrade = useCreateTrade();
 
   const createHandler = async (values) => {
+    setError("");
+
+    if (!values.ticker.trim()) {
+      return setError("Ticker symbol is required.");
+    }
+    if (!values.date) {
+      return setError("Date is required.");
+    }
+    const currentDate = new Date().toISOString().split("T")[0];
+    if (values.date > currentDate) {
+      return setError("The date cannot be in the future.");
+    }
+    if (values.entryPrice <= 0) {
+      return setError("Entry price must be a positive number.");
+    }
+    if (values.quantity <= 0 || !Number.isInteger(Number(values.quantity))) {
+      return setError("Quantity must be a positive integer.");
+    }
+    if (values.exitPrice && values.exitPrice < 0) {
+      return setError("Exit price must be a positive number or left empty.");
+    }
+    if (values.pl && isNaN(Number(values.pl))) {
+      return setError("P/L must be a number.");
+    }
+    if (!/^https?:\/\/.+\..+/.test(values.img)) {
+      return setError("Please enter a valid URL for the image link.");
+    }
+
     try {
       const createdTrade = await createTrade(values);
 
@@ -30,7 +58,6 @@ export default function AddTrade() {
       console.log("Navigating to trade:", tradeId);
       navigate(`/trades/${tradeId}`);
     } catch (error) {
-      console.error("Error creating trade:", error);
       setError(error.message || "An error occurred while creating the trade.");
     }
   };
@@ -43,10 +70,10 @@ export default function AddTrade() {
   return (
     <div className="add-trade-container">
       <h1>Add Trade</h1>
-      {/* {error && <p className="error-message">{error}</p>} */}
+      {error && <p className="error-message">{error}</p>}
       <form onSubmit={submitHandler} className="add-trade-form">
         <div className="form-group">
-          <label htmlFor="tickerSymbol">Ticker Symbol:</label>
+          <label htmlFor="tickerSymbol">* Ticker Symbol:</label>
           <input
             type="text"
             id="tickerSymbol"
@@ -57,7 +84,7 @@ export default function AddTrade() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="date">Date:</label>
+          <label htmlFor="date">* Date:</label>
           <input
             type="date"
             id="date"
@@ -68,7 +95,7 @@ export default function AddTrade() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="entryPrice">Entry Price:</label>
+          <label htmlFor="entryPrice">* Entry Price:</label>
           <input
             type="number"
             id="entryPrice"
@@ -80,7 +107,7 @@ export default function AddTrade() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="quantity">Quantity:</label>
+          <label htmlFor="quantity">* Quantity:</label>
           <input
             type="number"
             id="quantity"
@@ -114,7 +141,7 @@ export default function AddTrade() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="image">Image Link:</label>
+          <label htmlFor="image">* Image Link:</label>
           <input
             type="url"
             id="image"
