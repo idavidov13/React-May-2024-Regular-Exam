@@ -7,24 +7,31 @@ export default function Register() {
   const [error, setError] = useState("");
 
   const register = useRegister();
-
   const navigate = useNavigate();
 
   const { values, changeHandler, submitHandler } = useForm(
     { email: "", password: "", rePassword: "" },
     async ({ email, password, rePassword }) => {
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        setError("Please enter a valid email address.");
+        return;
+      }
+
+      if (password.length < 5 || password.length > 10) {
+        setError("Password must be between 5 and 10 characters long.");
+        return;
+      }
+
       if (password !== rePassword) {
-        values.password = "";
-        values.rePassword = "";
         setError("Passwords do not match.");
         return;
       }
+
       try {
         await register(email, password);
         navigate("/");
       } catch (err) {
-        values.password = "";
-        values.rePassword = "";
         const errorMessage =
           err?.message ||
           "An error occurred during registration. Please try again.";
