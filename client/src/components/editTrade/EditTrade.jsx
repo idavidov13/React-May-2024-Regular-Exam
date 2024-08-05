@@ -76,7 +76,7 @@ export default function EditTrade() {
       {error && <p className="error-message">{error}</p>}
       <form onSubmit={submitHandler} className="edit-trade-form">
         <div className="form-group">
-          <label htmlFor="tickerSymbol">Ticker Symbol:</label>
+          <label htmlFor="tickerSymbol">* Ticker Symbol:</label>
           <input
             type="text"
             id="tickerSymbol"
@@ -87,7 +87,7 @@ export default function EditTrade() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="date">Date:</label>
+          <label htmlFor="date">* Date:</label>
           <input
             type="date"
             id="date"
@@ -98,7 +98,7 @@ export default function EditTrade() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="entryPrice">Entry Price:</label>
+          <label htmlFor="entryPrice">* Entry Price:</label>
           <input
             type="number"
             id="entryPrice"
@@ -110,7 +110,7 @@ export default function EditTrade() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="quantity">Quantity:</label>
+          <label htmlFor="quantity">* Quantity:</label>
           <input
             type="number"
             id="quantity"
@@ -144,7 +144,7 @@ export default function EditTrade() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="image">Image Link:</label>
+          <label htmlFor="image">* Image Link:</label>
           <input
             type="url"
             id="image"
