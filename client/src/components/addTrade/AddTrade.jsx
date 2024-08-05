@@ -55,7 +55,6 @@ export default function AddTrade() {
       }
 
       const tradeId = createdTrade._id;
-      console.log("Navigating to trade:", tradeId);
       navigate(`/trades/${tradeId}`);
     } catch (error) {
       setError(error.message || "An error occurred while creating the trade.");
