@@ -8,12 +8,11 @@ import { useGetOneTrade } from "../../hooks/useTrades";
 const TradeDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { isAuthenticated, email } = useAuthContext();
-  // const { email, userId } = useAuthContext();
+  const { isAuthenticated, userId } = useAuthContext();
 
   const [trade, setTrade] = useGetOneTrade(id);
 
-  // const isOwner = userId === trade._ownerId;
+  const isOwner = userId === trade._ownerId;
 
   const tradeDeleteHandler = async () => {
     const isConfirmed = confirm(
@@ -61,7 +60,12 @@ const TradeDetails = () => {
           <p>
             <strong>P/L:</strong> {trade["p/l"] ? trade["p/l"] : "TBD"}
           </p>
-          {isAuthenticated ? (
+          {/* //FIXME: The functionality shoud be implemented */}
+          <p>
+            {/* <strong>Likes:</strong> {likes} */}
+            <strong>Likes:</strong> 0
+          </p>
+          {isOwner && (
             <div className="details-links">
               <Link
                 to="#"
@@ -77,8 +81,17 @@ const TradeDetails = () => {
                 Edit
               </Link>
             </div>
-          ) : (
-            ""
+          )}
+          {!isOwner && isAuthenticated && (
+            <div className="details-links">
+              <Link
+                to="#"
+                onClick={tradeDeleteHandler}
+                className="details-link "
+              >
+                Like
+              </Link>
+            </div>
           )}
         </div>
       </div>
