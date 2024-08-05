@@ -1,9 +1,11 @@
+/* Navbar Styles */
 .navbar {
   background-color: #1f1f1f;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .nav-links {
@@ -47,4 +49,47 @@
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
+/* Market Data Styles */
+.market-data {
+  background-color: #2b2b2b;
+  padding: 0.5rem; /* Increased padding for better spacing */
+  border: 1px solid #444;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  color: #e0e0e0;
+  text-align: left; /* Align text to the left */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.market-data div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.market-data h2 {
+  font-size: 1rem; /* Slightly smaller font size for better alignment */
+  margin: 0;
+  color: #bf8ffa;
+}
+
+.market-data p {
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.market-data .divider {
+  width: 1px;
+  background-color: #444;
+  height: 2rem; /* Adjust based on content height */
+  margin: 0 1rem; /* Space between text areas */
+}
+
+.data {
+  color: #bf8ffa;
 }
