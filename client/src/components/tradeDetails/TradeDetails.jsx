@@ -1,28 +1,52 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuthContext } from "../../context/authContext";
 import * as tradesAPI from "../../api/trades-api";
-
-import { useParams } from "react-router-dom";
-import { useGetOneTrade } from "../../hooks/useTrades";
+import * as likesAPI from "../../api/likes-api";
 
 const TradeDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { isAuthenticated, userId } = useAuthContext();
 
-  const [trade, setTrade] = useGetOneTrade(id);
+  const [trade, setTrade] = useState(null);
+  const [likes, setLikes] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const isOwner = userId === trade._ownerId;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const tradeDetails = await tradesAPI.getTradeById(id);
+        setTrade(tradeDetails);
+
+        const likesCount = await likesAPI.allLikesByTradeId(id);
+        setLikes(likesCount);
+
+        if (userId) {
+          const likedStatus = await likesAPI.isLiked(id, userId);
+          setIsLiked(likedStatus > 0);
+        }
+      } catch (error) {
+        console.error("Error fetching trade details:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [id, userId]);
+
+  const isOwner = userId === trade?._ownerId;
 
   const tradeDeleteHandler = async () => {
     const isConfirmed = confirm(
-      `Are you sure you want to delete ${trade.ticker} trade`
+      `Are you sure you want to delete the ${trade.ticker} trade?`
     );
 
     if (isConfirmed) {
       try {
         await tradesAPI.deleteTrade(id);
-
         navigate("/trades");
       } catch (error) {
         console.log(error.message);
@@ -30,8 +54,25 @@ const TradeDetails = () => {
     }
   };
 
-  if (!trade) {
+  const tradeLikeHandler = async () => {
+    try {
+      await likesAPI.likeTrade(id);
+      const updatedLikes = await likesAPI.allLikesByTradeId(id);
+      const likedStatus = await likesAPI.isLiked(id, userId);
+
+      setLikes(updatedLikes);
+      setIsLiked(likedStatus > 0);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  if (loading) {
     return <p>Loading trade details...</p>;
+  }
+
+  if (!trade) {
+    return <p>Trade not found.</p>;
   }
 
   return (
@@ -60,17 +101,15 @@ const TradeDetails = () => {
           <p>
             <strong>P/L:</strong> {trade["p/l"] ? trade["p/l"] : "TBD"}
           </p>
-          {/* //FIXME: The functionality shoud be implemented */}
           <p>
-            {/* <strong>Likes:</strong> {likes} */}
-            <strong>Likes:</strong> 0
+            <strong>Likes:</strong> {likes}
           </p>
           {isOwner && (
             <div className="details-links">
               <Link
                 to="#"
                 onClick={tradeDeleteHandler}
-                className="details-link "
+                className="details-link"
               >
                 Delete
               </Link>
@@ -84,13 +123,13 @@ const TradeDetails = () => {
           )}
           {!isOwner && isAuthenticated && (
             <div className="details-links">
-              <Link
-                to="#"
-                onClick={tradeDeleteHandler}
-                className="details-link "
-              >
-                Like
-              </Link>
+              {isLiked ? (
+                <span className="liked">Liked!</span>
+              ) : (
+                <button onClick={tradeLikeHandler} className="details-link">
+                  Like
+                </button>
+              )}
             </div>
           )}
         </div>

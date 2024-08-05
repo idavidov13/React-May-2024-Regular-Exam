@@ -73,3 +73,11 @@
   background-color: #018786;
   transform: scale(1.1);
 }
+
+.liked {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #03dac6;
+  font-weight: bold;
+  margin-top: 1rem;
+}
