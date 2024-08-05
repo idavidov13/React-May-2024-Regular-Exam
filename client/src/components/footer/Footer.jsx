@@ -24,15 +24,6 @@ export default function Footer() {
             achieve their financial goals.
           </p>
         </div>
-        <div className="footer-section">
-          <h2>Contact Us</h2>
-          <p>
-            Email:{" "}
-            <a href="mailto:support@tradevault.com">support@tradevault.com</a>
-          </p>
-          <p>Phone: +123-456-7890</p>
-          <p>Address: 123 Trade Street, Trading City, TR 45678</p>
-        </div>
       </div>
       <div className="footer-bottom">
         <p>
