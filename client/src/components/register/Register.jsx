@@ -19,11 +19,15 @@ export default function Register() {
       }
 
       if (password.length < 5 || password.length > 10) {
+        values.password = "";
+        values.rePassword = "";
         setError("Password must be between 5 and 10 characters long.");
         return;
       }
 
       if (password !== rePassword) {
+        values.password = "";
+        values.rePassword = "";
         setError("Passwords do not match.");
         return;
       }
@@ -32,6 +36,8 @@ export default function Register() {
         await register(email, password);
         navigate("/");
       } catch (err) {
+        values.password = "";
+        values.rePassword = "";
         const errorMessage =
           err?.message ||
           "An error occurred during registration. Please try again.";
