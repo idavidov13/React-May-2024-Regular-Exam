@@ -1,4 +1,8 @@
-import { getAccessToken } from "../utils/authUtils";
+import {
+  getAccessToken,
+  clearAuthData,
+  redirectToLogin,
+} from "../utils/authUtils";
 
 async function requester(method, url, data) {
   const options = {};
@@ -29,6 +33,10 @@ async function requester(method, url, data) {
     const response = await fetch(url, options);
 
     if (!response.ok) {
+      if (response.status === 403) {
+        clearAuthData();
+        redirectToLogin();
+      }
       const err = await response.json();
       throw new Error(err.message);
     }

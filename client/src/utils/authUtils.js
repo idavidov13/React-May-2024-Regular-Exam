@@ -9,3 +9,11 @@ export const getAccessToken = () => {
 
   return authData?.accessToken;
 };
+
+export function clearAuthData() {
+  localStorage.removeItem("auth");
+}
+
+export function redirectToLogin() {
+  window.location.href = "/login";
+}
