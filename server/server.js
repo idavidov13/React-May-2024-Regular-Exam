@@ -1392,6 +1392,38 @@
     			_createdOn: 1613551388703
     		}
     	},
+	trades: {
+  "804071d6-22ce-42ae-8c0c-5cdf24950021": {
+    "ticker": "AAPL",
+    "date": "2024-08-01",
+    "entryPrice": "131.23",
+    "quantity": "100",
+    "exitPrice": "",
+    "p/l": "",
+    "img": "https://www.investopedia.com/thmb/jDvAMaQurInmwXCaBedhXSRRUNc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/200113AAPLD-757c03fa7fe14f7cbc736c3ef8b16d82.JPG",
+    "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8"
+  },
+  "2cbc288c-f6e9-40ca-9bca-54549ca3f723": {
+    "ticker": "BTC",
+    "date": "2024-08-02",
+    "entryPrice": "63322",
+    "quantity": "0.1",
+    "exitPrice": "",
+    "p/l": "",
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK6RbFoHm-hBlxv3neSVkvF4xMlLuATARyJw&s",
+    "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a"
+  },
+  "abbd5d23-05e4-42b5-87b6-273f853b870e": {
+    "ticker": "TSLA",
+    "date": "2024-08-03",
+    "entryPrice": "223.55",
+    "quantity": "80",
+    "exitPrice": "",
+    "p/l": "",
+    "img": "https://dbinvesting.com/wp-content/uploads/2023/09/Tesla-Stock-price-chart.png",
+    "_ownerId": "60f0cf0b-34b0-4abd-9769-8c42f830dffc"
+  }
+},
     	comments: {
     		"0a272c58-b7ea-4e09-a000-7ec988248f66": {
     			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
