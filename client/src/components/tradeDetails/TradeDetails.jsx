@@ -99,7 +99,7 @@ const TradeDetails = () => {
             {trade.exitPrice ? `$${trade.exitPrice}` : "Not Closed Yet"}
           </p>
           <p>
-            <strong>P/L:</strong> {trade["p/l"] ? trade["p/l"] : "TBD"}
+            <strong>P/L:</strong> {trade["pl"] ? trade["pl"] : "TBD"}
           </p>
           <p>
             <strong>Likes:</strong> {likes}
