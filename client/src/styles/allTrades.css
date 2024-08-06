@@ -1,3 +1,9 @@
+.all-trades-heading {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
 .all-posted-trades {
   display: flex;
   flex-wrap: wrap;
