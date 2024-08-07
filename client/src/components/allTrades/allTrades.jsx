@@ -10,7 +10,10 @@ const AllTrades = () => {
 
       <div className="all-posted-trades">
         {trades.length > 0 ? (
-          trades.map((trade) => <TradeItem key={trade._id} {...trade} />)
+          trades
+            .slice()
+            .reverse()
+            .map((trade) => <TradeItem key={trade._id} {...trade} />)
         ) : (
           <div className="no-trades-container">
             <h3>There are no logged trades yet!</h3>
