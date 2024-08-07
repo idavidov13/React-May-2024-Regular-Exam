@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to TradeVault, your one-stop solution for tracking and managing all your trades. This web application is developed by Ivan Davidov as an exam project for the SoftUni course ReactJS-May 2024. It is developed with React and it utilizes the [SoftUni Practice server](https://github.com/softuni-practice-server/softuni-practice-server).
+Welcome to TradeVault, your one-stop solution for tracking and managing all your trades. This web application is developed by Ivan Davidov as an exam project for the SoftUni course ReactJS-May 2024. It is developed with React and utilizes a custom back-end service.
 
 ## About
 
@@ -14,29 +14,39 @@ Our mission is to empower traders by providing a reliable and user-friendly plat
 
 ## Functionalities
 
+### Public Part
+
+The public part of TradeVault includes:
+
+- **Home Page:** General information about TradeVault and links to login or register.
+- **Login:** Allows existing users to log in using their email and password.
+- **Register:** Enables new users to create an account by providing an email, password, and confirming the password.
+- **All Posted Trades:** Displays a catalog of all trades posted by users, with details accessible to both authenticated and unauthenticated users.
+
+### Private Part (User Area)
+
+Registered users have access to additional features:
+
+- **Add Trade:** Allows users to post new trades by submitting a form with all necessary details.
+- **Edit/Delete Trade:** Users can edit or delete their own trades. These actions are protected by confirmation dialogs.
+- **Like Trades:** Logged-in users can like other users' trades, with each trade limited to one like per user.
+
 ### Navigation Bar
 
 The navigation bar adapts based on the user's authentication status, offering different functionalities:
 
 - **Authenticated Users:**
 
+  - Information about last trading date and price of the SP500, provided by external API
   - _All Posted Trades_
   - _Add Trade_
   - _Logout_
 
 - **Unauthenticated Users:**
+  - Information about last trading date and price of the SP500, provided by external API
   - _All Posted Trades_
   - _Login_
   - _Register_
-
-**The navigation also includes market data provided by an external API.**
-
-### Home Page
-
-The content of the home page varies based on the user's authentication status:
-
-- **Authenticated Users:** Redirects to the "Add Trade" page.
-- **Unauthenticated Users:** Leads to the "Login/Register" page.
 
 ### Footer
 
@@ -45,41 +55,37 @@ Includes sections on:
 - **About**
 - **Mission**
 
-### Register
+## Technologies Used
 
-- Users can register by providing an email, password, and confirming the password.
-- Validation checks include:
-  - Email format verification.
-  - Password length must be between 6 and 10 characters.
-  - The confirmation password must match the original password.
-- In case of validation errors or API request failures, an error message is displayed, and the password fields are cleared.
+### Front-end
 
-### Login
+- **React.js:** Utilized for building the user interface as a Single Page Application (SPA).
+  - **React Hooks:** Used for state and lifecycle management.
+  - **Context API:** Employed for state management across components.
+  - **React Router:** Implements client-side routing to at least 5 pages, with at least 2 pages taking parameters.
+  - **Synthetic Events:** Handled various user interactions.
+  - **Component Lifecycle:** Managed component mount, update, and unmount processes.
 
-- Users can log in by providing their email and password.
-- In case of any issues with the API request, an error message is displayed, and the password field is cleared.
+### Back-end
 
-### All Posted Trades
+- **SoftUni Practice Server** - since the main focus is on the front-end of the application, I decided to use the provided server.
 
-- All users can view a list of posted trades, including the image, ticker, and date.
-- Each trade has a "Details" button, providing access to detailed information about the trade.
-- Trades feature a like counter.
+### External APIs and Services
 
-### Add Trade
+- **Market Data API:** Alpha Vantage is the chosen provider. There is a limit of 25 API calls per day.
 
-- Registered users can access the "Add Trade" feature, where they can submit a form to post new trades.
-- All mandatory fields are validated before submission.
-- After posting, the user can edit or delete their trade. These actions require confirmation to proceed.
-- Edit/Delete functionalities are accessible only to the trade's author.
+### Error Handling and Data Validation
 
-### Like Functionality
+- Applied error handling and data validation throughout the application to ensure a robust user experience and to prevent crashes.
 
-- Registered users can like other users' trades once.
-- After liking, the user sees "Liked!" and the Like button disappears.
+## Project Structure
 
-### Logout
+The application is divided into the following main parts:
 
-- The application includes a logout functionality for registered users.
+- **Components:** Modular React components organized in a logical folder structure.
+- **Services:** Handles API calls and data fetching.
+- **Styles:** External CSS files for component styling.
+- **Custom Hooks:** Encapsulate and reuse stateful logic across multiple components.
 
 ## Getting Started
 
