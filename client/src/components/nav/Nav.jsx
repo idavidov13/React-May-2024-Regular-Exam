@@ -8,18 +8,18 @@ export default function NavBar() {
   const [marketData, setMarketData] = useState(null);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const getMarketData = async () => {
-      try {
-        const data = await fetchMarketData();
-        setMarketData(data);
-      } catch (error) {
-        setError(error.message);
-      }
-    };
+  // useEffect(() => {
+  //   const getMarketData = async () => {
+  //     try {
+  //       const data = await fetchMarketData();
+  //       setMarketData(data);
+  //     } catch (error) {
+  //       setError(error.message);
+  //     }
+  //   };
 
-    getMarketData();
-  }, []);
+  //   getMarketData();
+  // }, []);
 
   const latestDate = marketData
     ? Object.keys(marketData["Time Series (Daily)"])[0]
