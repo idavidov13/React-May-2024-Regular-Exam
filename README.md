@@ -103,6 +103,9 @@ Open the following address in your browser [TradeVault](http://localhost:5173/)
 
 ### Unit Tests are available:
 
+To run them, perform the following command in terminal for src folder:
+`npm run test`
+
 ### E2E Tests in Playwright are available:
 
 To run them, perform the following commands:
