@@ -1,7 +1,7 @@
 import {
   getAccessToken,
   clearAuthData,
-  redirectToLogin,
+  redirectToHome,
 } from "../utils/authUtils";
 
 async function requester(method, url, data) {
@@ -35,7 +35,7 @@ async function requester(method, url, data) {
     if (!response.ok) {
       if (response.status === 403) {
         clearAuthData();
-        redirectToLogin();
+        redirectToHome();
       }
       const err = await response.json();
       throw new Error(err.message);

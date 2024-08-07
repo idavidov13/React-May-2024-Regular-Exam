@@ -14,6 +14,6 @@ export function clearAuthData() {
   localStorage.removeItem("auth");
 }
 
-export function redirectToLogin() {
-  window.location.href = "/login";
+export function redirectToHome() {
+  window.location.href = "/";
 }
