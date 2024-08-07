@@ -108,6 +108,9 @@ To run them, perform the following command in terminal for src folder:
 
 ### E2E Tests in Playwright are available:
 
+The test has the following parameters added `test.use({ launchOptions: { slowMo: 2500 } });
+test.setTimeout(480000);`. This is made with presentation purpose. If you want to slow down/fast forward the text execution, please modify slowMo parameter (in milliseconds)<br>
+
 To run them, perform the following commands:
 `npm install`<br>
 `npm test`
